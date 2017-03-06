@@ -97,7 +97,13 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     # Sigmoid function
     sigmoid <- function(x){1/(1 + exp(-x))}
         
-    
+# Activation calculations per node
+    # Variability will be fed into each processing cycle by adding Gaussian noise
+    # to the hidden and output node activations per cycle.
         
+    # Cascade rate: controls how fast the network propagates signals forward.
+    tau <- .1 
+        
+    
     
     

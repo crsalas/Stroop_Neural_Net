@@ -94,9 +94,10 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
 # should be tested in a future implementation.  
     
         
-
+    # Sigmoid function
+    sigmoid <- function(x){1/(1 + exp(-x))}
         
-        
+    
         
     
     

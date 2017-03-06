@@ -22,7 +22,7 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     input <- data.frame(matrix(rep(NA,6),nrow =1,ncol =6))
     names(input) <- c("C.Red", "C.Green", "Task.Color","Task.Word",
                       "W.Red", "W.Green")
-    input    
+    input       
 
 # Layer2  = Hidden Layer. 
 # This represents the intermediate nodes between the input and output layers. 
@@ -40,8 +40,4 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     
     hidden
 
-    
-    
-    
-    
     

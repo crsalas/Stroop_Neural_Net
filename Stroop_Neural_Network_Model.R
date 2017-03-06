@@ -51,7 +51,31 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     output <- data.frame(matrix(rep(NA,2), nrow =1, ncol = 2))
     names(output) <- c("Red", "Green")
     
-    # output    
+    # output   
+    
+# Connections and weight matrices. 
+    # These were derived via a network training algorithm. The network's weights were 
+    # trained to indicate the correct response to a color word or to the color of the 
+    # word's printed ink. Differential amounts of exposure to words and color patterns 
+    # were given in order to mimic human's overlearned tendency for word reading 
+    # relative to color naming (ratio was 5:1, respectively). The resulting weight 
+    # matrix represents a network with two processing sub-systems/pathways: 
+    # A Color detection pathway, and a Word reading pathway. Values were 
+    # similar to those reported by Botvinick et al, 2001).
+    
+    
+    # List of weights and connection indices from input to hidden node links.
+        # CH1w and CH2w: Color hidden weights. WH1w and WH2w: Word hidden weights
+        # CHP: Color Hidden Path. WHP: Word Hidden Path
+        CH1 = list("CH1w" = c(2.2,-2.2,4), "CHP" = c(1,2,3))
+        CH2 = list("CH2w" = c(-2.2,2.2,4), "CHP" = c(1,2,3)) 
+        WH1 = list("WH1w" = c(4,2.6,-2.6), "WHP" = c(4,5,6))
+        WH2 = list("WH2w" = c(4,-2.6,2.6), "WHP" = c(4,5,6))
+    
+    
+    
+    
+    
     
     
     

@@ -104,6 +104,14 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     # Cascade rate: controls how fast the network propagates signals forward.
     tau <- .1 
         
+    # Gaussian noise distribution (processing). Mean = 0, SD = .1
+    set.seed(151)  
+    sigma.p <- .1
+    dp <- rnorm(100000,0,sigma.p)
+    
+    
+    
+    
     
     
     

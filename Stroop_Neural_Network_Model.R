@@ -72,7 +72,14 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
         WH1 = list("WH1w" = c(4,2.6,-2.6), "WHP" = c(4,5,6))
         WH2 = list("WH2w" = c(4,-2.6,2.6), "WHP" = c(4,5,6))
     
-    
+    # List of lists containing I to H weights and connection indices    
+        IH.connections <- list(CH1,CH2,WH1,WH2)
+        
+        
+    # List of vectors representing Hidden to Output node weights. Each output
+    # node is connected to all hidden nodes, so indices are unnecessary
+        HO.weights <- list("ROut" = c(1.3,-1.3,2.5,-2.5),
+                           "GOut" = c(-1.3,1.3,-2.5,2.5))
     
     
     

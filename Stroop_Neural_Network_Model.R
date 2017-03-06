@@ -82,7 +82,21 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
                            "GOut" = c(-1.3,1.3,-2.5,2.5))
     
     
+########################################
+#  Transfer, Activation, and Response  #
+#         Mechanism functions.         #
+########################################
+# The neurons pass activation forward by summing their net input, and 
+# passing this activation through a nonlinear function. This model uses 
+# a Sigmoid transform function, as it i continuously differentiable (which 
+# is handy for the backpropagation training algorithm used to derive the 
+# weights - see training script). Alternatives such as a Weibul function
+# should be tested in a future implementation.  
     
-    
+        
+
+        
+        
+        
     
     

@@ -6,4 +6,4 @@ This neural network model aims to simulate the following aspects of the human co
 * response conflict resolution, and 
 * differences in responses as a function of stimulus set. 
 
-Initial runs of this model suggests it's able to generate evidence of each of these and demonstrates how they change across the processing time-course of an adapted version of the Stroop task. 
+Initial runs of this model provides evidence for each of these, and demonstrates how they change across the processing time-course of an adapted version of the Stroop task. 

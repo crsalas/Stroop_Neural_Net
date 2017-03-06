@@ -109,7 +109,43 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     sigma.p <- .1
     dp <- rnorm(100000,0,sigma.p)
     
+# Net Activation (Hidden layer):    
+    # Net calculation for hidden nodes. Input: a vector of stimuli values. 
+    # Connections: a list of  weights and connection indices from Input to Hidden 
+    # layer. Bias: Hidden layer node bias (chosen to mute hidden node activation
+    # when a task demand input is zero). net.input.matrix: boolean value. TRUE 
+    # returns out a list of pre-summation input matrices as well as a vector of 
+    # net activation for all hidden nodes. FALSE returns only the net activation.
     
+    H.netcalc <- function(input, connections, bias = -4, net.input.matrix = FALSE){
+        # Shorthand     
+        inp <- input 
+        con <- connections
+        
+        # A*W products per hidden node
+        IHC <- t(sapply(1:2,function(i) unlist(con[[i]][[1]]*inp[con[[i]][[2]]])))
+        IHW <- t(sapply(3:4,function(i) unlist(con[[i]][[1]]*inp[con[[i]][[2]]])))
+        
+        # Convert to data.frame
+        IHC <- data.frame(IHC)
+        IHW <- data.frame(IHW)
+        rownames(IHC) <- c("Node1", "Node2")
+        rownames(IHW) <- c("Node1", "Node2")
+        
+        # Net input matrices
+        net.input <- list("IHC" = IHC, "IHW" = IHW)       
+        
+        # Sums per node
+        IHCsum <- apply(IHC, 1, function(i) sum(i))
+        IHWsum <- apply(IHW, 1, function(i) sum(i))
+        
+        # Net per node
+        net <- c(IHCsum,IHWsum) + bias 
+        
+        ifelse(net.input.matrix == TRUE, 
+               return(list("Net.Input.Matrix" = net.input,"Net.Activation" = net)), 
+               return(net))
+    }  
     
     
     

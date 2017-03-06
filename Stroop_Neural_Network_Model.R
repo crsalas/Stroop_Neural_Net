@@ -210,5 +210,36 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
         return(hidden)
         
     }    
+
+# Net Activation (Output layer):    
+    # Net calculation for output nodes. Input: a vector of stimuli values. 
+    # weights: a list of weights from Hidden to Output layer. Returns out 
+    # a vector of net activation for all output nodes. 
     
+    O.netcalc <- function(input, weights){
+        
+        # Starts at row 2 since row 1 are hidden layer init values
+        inp <- input[2:nrow(input),] 
+        
+        # Weight vectors is list of weight vectors
+        w <- weights
+        
+        # A*W products per output node
+        r.prod <- data.frame(t(apply(inp, 1, function(i) i*w$ROut)))
+        g.prod <- data.frame(t(apply(inp, 1, function(i) i*w$GOut)))
+        
+        # Sums per node (across cycles)
+        Rsums <- cbind(rowSums(r.prod))
+        Gsums <- cbind(rowSums(g.prod))
+        
+        # Net per node
+        net.output <- data.frame("net.R" = Rsums, "net.G" = Gsums)
+        
+        return(net.output)
+    }
+    
+
+    
+    
+
     

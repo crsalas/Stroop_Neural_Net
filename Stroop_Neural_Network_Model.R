@@ -239,7 +239,66 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     }
     
 
+# Hidden to Output nodes:  Activation function with sigmoid transform
+    # Accepts a cascade rate (tau), a vector of net activation sums (net),
+    # and a dataframe to store hidden node activations (O.nodes), and the
+    # maximum number of iterations. 
     
+    fire.HO <- function(tau = .1, net, O.nodes, max.iter = 15){ 
+        
+        # Clears first row for ease of processing (if values are NA)
+        if(sum(is.na(O.nodes)) == 2){
+            out <- O.nodes[-(1:nrow(O.nodes)),]
+        } else{
+            out <- O.nodes
+        }
+        
+        # Initializes the cycles
+        c = 1     
+        
+        # While loop to run activation transfer function
+        while(c <= max.iter){ 
+            
+            if(c == 1){ 
+                
+                # Noise (2 different noise values (one per node))
+                noise <- sample(dp,2) # Remember to turn on for real runs   
+                
+                net.activations <- tau*net[c,] + (1-tau)*net[c,] + noise
+                
+                # Current net activation per node in hidden layer    
+                activation <- sigmoid(net.activations)
+                
+            } 
+            
+            else if(sum(is.na(O.nodes)) == 0 | c > 1){
+                # Net average from previous cycle
+                net.avg <- apply(out[1:c,], 2, function(i) mean(i, na.rm = TRUE))
+                
+                # Noise (two different noise values (one per output node))
+                noise <- sample(dp,2)   
+                
+                net.activations <- tau*net[c,] + (1-tau)*net.avg + noise 
+                
+                # Current net activation per node in output layer
+                activation <- sigmoid(net.activations)
+            }
+            
+            names(activation) <- c("Red", "Green")
+            out <- rbind(out,activation)
+            
+            c <- c + 1 
+        }
+        
+        # Tidy up the output node matrix
+        # Adds a zero vector to first row (for plotting)
+        out <- rbind(rep(0,2), out) 
+        names(out) <- c("Red", "Green")
+        
+        # Return the hidden node activation states
+        return(out)
+        
+    }    
     
 
     

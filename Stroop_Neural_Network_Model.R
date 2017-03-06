@@ -148,6 +148,67 @@ setwd("C:/Users/Carlos Salas/Dropbox/1 Spring 2017/CompModels/Stroop_Neural_Net"
     }  
     
     
+# Input to Hidden nodes:  Activation function with sigmoid transform
+    # Accepts a cascade rate (tau), a vector of net activation sums (net),
+    # and a dataframe to store hidden node activations (H.nodes), and the
+    # maximum number of iterations. 
     
+    fire.IH <- function(tau = .1, net, H.nodes, max.iter = 15){ 
+        
+        # Clears first row for ease of processing (if values are NA)
+        if(sum(is.na(H.nodes)) == 4){
+            hidden <- H.nodes[-(1:nrow(H.nodes)),]
+        } else{
+            hidden = H.nodes
+        }
+        
+        # Initializes the cycles
+        c = 1     
+        
+        # While loop to run activation transfer function
+        while(c <= max.iter){ 
+            
+            # For first iteration
+            if(c == 1){ 
+                
+                # Noise (4 different noise values (one per node))
+                noise <- sample(dp,4) # Remember to turn on  for real runs   
+                
+                net.activations <- tau*net + (1-tau)*net + noise
+                
+                # Current net activation per node in hidden layer    
+                activation <- sigmoid(net.activations)
+                
+            } 
+            
+            # For all other iterations
+            else if(sum(is.na(H.nodes)) == 0 | c > 1){
+                # Net average from previous cycle
+                net.avg <- apply(hidden, 2, function(i) mean(i, na.rm = TRUE))
+                
+                # Noise (4 different noise values (one per node))
+                noise <- sample(dp,4) # Remember to turn on  for real runs   
+                
+                net.activations <- tau*net + (1-tau)*net.avg + noise 
+                
+                # Current net activation per node in hidden layer
+                activation <- sigmoid(net.activations)
+            }
+            
+            
+            hidden <- rbind(hidden,activation)
+            
+            c <- c + 1 
+        }
+        
+        # Tidy up the hidden node matrix
+        # Adds a zero vector to first row (for plotting)
+        hidden <- rbind(rep(0,4), hidden) 
+        names(hidden) <- c("CH1", "CH2", "WH1", "WH2")
+        
+        # Return the hidden node activation states
+        return(hidden)
+        
+    }    
     
     

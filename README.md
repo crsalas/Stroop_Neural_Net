@@ -8,4 +8,4 @@ This neural network model aims to simulate the following aspects of the human co
 
 Initial runs of this model provides evidence for each of these, and demonstrates how they change across the processing time-course of an adapted version of the Stroop task. 
 
-![Model Diagram](Model Diagram.png)
+![Model Diagram](https://github.com/crsalas/Stroop_Neural_Net/blob/master/Model%20Diagram.png "Network Diagram")
